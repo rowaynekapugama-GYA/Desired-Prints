@@ -1,9 +1,14 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Desired Prints</title>
-<meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Desired Prints prints and presses custom clothing for businesses, events and company merchandise. Tees, hoodies, sweatshirts and kids sizes.">
+<meta name="description" content="Desired Prints prints and presses custom clothing for businesses, events and company merchandise. Tees, hoodies, caps, workwear and kids sizes.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112..125,700..900&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="icon" href="logo.jpg">
 <style>
 /* Layout concept: a printer's spec sheet. Paper-white pages, heavy ink headings,
    CMYK registration marks and colour bars as the recurring detail, one black press-room band. */
@@ -28,6 +33,8 @@
   color-scheme:light;
 }
 *{box-sizing:border-box}
+body{margin:0}
+[hidden]{display:none!important}
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
 body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:var(--s-md);line-height:1.6;-webkit-font-smoothing:antialiased}
@@ -131,17 +138,26 @@ section{scroll-margin-top:80px}
 
 /* gallery */
 .gallery{background:var(--tint)}
-.filters{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.5rem}
-.filter{font:600 var(--s-sm)/1 var(--f-body);padding:.6rem 1rem;border-radius:999px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink-soft);cursor:pointer}
-.filter[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 .g-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem}
-.tile{margin:0;background:var(--paper);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:transform .2s ease,box-shadow .2s ease}
-.tile:hover{transform:translateY(-4px);box-shadow:0 14px 30px -18px rgba(18,18,22,.45)}
-.tile .art{aspect-ratio:1/1;max-width:100%;display:grid;place-items:center;padding:12%}
-.tile .art svg{width:100%;height:auto}
-.tile figcaption{display:flex;justify-content:space-between;align-items:center;gap:.5rem;padding:.8rem 1rem;border-top:1px solid var(--line);font-weight:700;font-size:var(--s-sm)}
-.tile figcaption span{font-family:var(--f-mono);font-weight:500;font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft)}
-.gallery-note{margin-top:1.5rem;font-size:var(--s-sm);color:var(--ink-soft)}
+.shot{position:relative;display:block;width:100%;max-width:100%;margin:0;padding:0;border:0;border-radius:var(--radius);overflow:hidden;background:var(--ink);cursor:zoom-in;aspect-ratio:4/5;font:inherit;text-align:left;color:var(--on-ink)}
+.shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.shot:hover img{transform:scale(1.04)}
+.shot.feature{grid-column:span 2;grid-row:span 2;aspect-ratio:auto}
+.shot.wide{grid-column:span 2;aspect-ratio:16/10}
+.shot .cap{position:absolute;left:0;right:0;bottom:0;display:flex;flex-direction:column;gap:.15rem;padding:2.75rem 1rem .9rem;background:linear-gradient(transparent,rgba(10,10,14,.85))}
+.shot .cap b{font-weight:700;font-size:var(--s-sm);line-height:1.25}
+.shot .cap span{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--on-ink-soft)}
+.shot.feature .cap b{font-size:var(--s-lg)}
+.ig-strip{margin-top:1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding:1.1rem 1.25rem;border-radius:var(--radius);background:var(--paper);border:1.5px solid var(--line)}
+.ig-strip p{color:var(--ink-soft);font-size:var(--s-sm)}
+.ig-strip b{color:var(--ink)}
+.lightbox{position:fixed;inset:0;z-index:60;background:rgba(10,10,14,.94);display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:1rem;padding:calc(3.5rem + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) calc(1.5rem + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.lb-fig{margin:0;display:flex;flex-direction:column;align-items:center;gap:.75rem;min-width:0}
+.lb-fig img{max-width:100%;max-height:78vh;width:auto;height:auto;object-fit:contain;border-radius:8px}
+.lb-fig figcaption{color:var(--on-ink);font-weight:600;font-size:var(--s-sm);text-align:center}
+.lb-btn{background:transparent;color:var(--on-ink);border:1.5px solid rgba(244,246,250,.4);border-radius:999px;font:700 var(--s-sm)/1 var(--f-body);padding:.7rem 1rem;cursor:pointer}
+.lb-btn:hover{border-color:var(--on-ink)}
+.lb-close{position:absolute;top:calc(.9rem + env(safe-area-inset-top,0px));right:max(16px,env(safe-area-inset-right,0px))}
 
 /* process */
 .steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1.25rem;counter-reset:step;list-style:none;margin:0;padding:0}
@@ -204,7 +220,6 @@ form.contact{display:grid;grid-template-columns:1fr 1fr;gap:1rem;padding:clamp(1
 
 /* responsive */
 @media (max-width:980px){
-  .g-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
   .steps{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:2rem}
   .garments{grid-template-columns:1fr}
 }
@@ -212,17 +227,25 @@ form.contact{display:grid;grid-template-columns:1fr 1fr;gap:1rem;padding:clamp(1
   .hero-grid,.order-grid,.contact-grid{grid-template-columns:1fr}
   .aud-grid{grid-template-columns:1fr}
   .g-row{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .g-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .shot.feature{grid-row:span 1;aspect-ratio:1/1}
   .sheets{height:clamp(300px,70vw,440px)}
 }
 @media (max-width:560px){
-  .g-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem}
-  .tile figcaption{flex-direction:column;align-items:flex-start;gap:.15rem;padding:.7rem .8rem}
+  .g-grid{gap:.7rem}
+  .shot .cap{padding:2rem .75rem .7rem}
+  .lightbox{grid-template-columns:1fr 1fr;align-content:center}
+  .lb-fig{grid-column:1/-1;grid-row:1}
+  .lb-prev,.lb-next{grid-row:2}
   .steps{grid-template-columns:1fr}
   .checklist{grid-template-columns:1fr}
   form.contact{grid-template-columns:1fr}
   .cta-row .btn{flex:1 1 100%}
 }
 </style>
+</head>
+<body>
+
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="reg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="6.5"/><line x1="12" y1="1" x2="12" y2="23"/><line x1="1" y1="12" x2="23" y2="12"/></symbol>
@@ -238,6 +261,7 @@ form.contact{display:grid;grid-template-columns:1fr 1fr;gap:1rem;padding:clamp(1
       <a href="#gallery">Gallery</a>
       <a href="#how">How it works</a>
       <a href="#contact">Contact</a>
+      <a href="https://www.instagram.com/desiredprint/" target="_blank" rel="noopener">Instagram</a>
       <a class="btn btn-ink" href="#order">Order now</a>
     </nav>
   </div>
@@ -251,7 +275,7 @@ form.contact{display:grid;grid-template-columns:1fr 1fr;gap:1rem;padding:clamp(1
       <div class="hero-copy">
         <span class="eyebrow"><svg class="reg"><use href="#reg"/></svg>Custom clothing printing and pressing</span>
         <h1>Your brand, <span class="hl">printed</span> and pressed onto every shirt.</h1>
-        <p class="lede">Tees, hoodies and sweatshirts for businesses, events and company merchandise. Send us your logo and we'll take it from mock-up to finished garments.</p>
+        <p class="lede">Tees, hoodies, caps and workwear for businesses, events and company merchandise. Send us your logo and we'll take it from mock-up to finished garments.</p>
         <div class="cta-row">
           <a class="btn btn-ink" href="#order"><svg><use href="#dl"/></svg>Get the order form</a>
           <a class="btn btn-line" href="#contact">Ask a question</a>
@@ -309,7 +333,7 @@ form.contact{display:grid;grid-template-columns:1fr 1fr;gap:1rem;padding:clamp(1
       <div class="section-head">
         <span class="eyebrow"><svg class="reg"><use href="#reg"/></svg>What we print</span>
         <h2>Clothing that carries your name.</h2>
-        <p>Whether you're kitting out a team, running an event or launching a merch range, we print and press your design onto the garments you choose, in the colours you want.</p>
+        <p>Whether you're kitting out a team, running an event or launching a merch range, we print and press your design onto the tees, hoodies, caps and workwear you choose, in the colours you want.</p>
       </div>
 
       <div class="aud-grid">
@@ -317,7 +341,7 @@ form.contact{display:grid;grid-template-columns:1fr 1fr;gap:1rem;padding:clamp(1
           <span class="dot" style="background:var(--cyan)"><svg viewBox="0 0 24 24" fill="none" stroke="#121216" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2"/></svg></span>
           <h3>Businesses</h3>
           <p>Uniforms and staff tees that keep your team looking consistent, from the front counter to the worksite.</p>
-          <ul><li>Staff uniforms</li><li>Workwear</li><li>Branded tees</li></ul>
+          <ul><li>Staff uniforms</li><li>Workwear</li><li>Polos and work shirts</li></ul>
         </article>
         <article class="aud">
           <span class="dot" style="background:var(--magenta)"><svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.5 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/></svg></span>
@@ -328,15 +352,15 @@ form.contact{display:grid;grid-template-columns:1fr 1fr;gap:1rem;padding:clamp(1
         <article class="aud">
           <span class="dot" style="background:var(--yellow)"><svg viewBox="0 0 24 24" fill="none" stroke="#121216" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l-1 12H7z"/><path d="M9 8a3 3 0 016 0"/></svg></span>
           <h3>Merchandise</h3>
-          <p>Branded hoodies, sweatshirts and tees for your company to sell, give away or wear with pride.</p>
-          <ul><li>Company merch</li><li>Launch giveaways</li><li>Club and band merch</li></ul>
+          <p>Branded hoodies, caps, sweatshirts and tees for your company to sell, give away or wear with pride.</p>
+          <ul><li>Company merch</li><li>Launch giveaways</li><li>Trucker caps</li><li>Club and car merch</li></ul>
         </article>
       </div>
 
       <div class="garments">
         <div class="g-copy">
           <h3>Garments and sizes</h3>
-          <p>Choose your style and garment colour, then tell us where the print goes and how big it should be.</p>
+          <p>Choose your style and garment colour, then tell us where the print goes and how big it should be. We also print caps, polos and work shirts.</p>
           <div class="sizes">
             <span><b>Adult</b> XS, S, M, L, XL, 2XL, 3XL</span>
             <span><b>Babies</b> 0 to 3, 3 to 6, 6 to 12, 12 to 24 months</span>
@@ -354,15 +378,21 @@ form.contact{display:grid;grid-template-columns:1fr 1fr;gap:1rem;padding:clamp(1
       <div class="section-head">
         <span class="eyebrow"><svg class="reg"><use href="#reg"/></svg>Gallery</span>
         <h2>Fresh off the press.</h2>
-        <p>A look at the kinds of jobs we print. Tap a category to filter.</p>
+        <p>Real jobs we've printed and pressed for local businesses, brands and families. Tap any photo to see it up close.</p>
       </div>
-      <div class="filters" role="group" aria-label="Filter gallery">
-        <button class="filter" id="f-all" data-f="all" aria-pressed="true">All</button>
-        <button class="filter" id="f-business" data-f="business" aria-pressed="false">Business</button>
-        <button class="filter" id="f-events" data-f="events" aria-pressed="false">Events</button>
-        <button class="filter" id="f-merch" data-f="merch" aria-pressed="false">Merchandise</button>
+      <div class="g-grid" id="g-grid">
+        <button class="shot feature" type="button" data-i="0" id="shot-0"><img src="job-4wd-hoodies.jpg" alt="Black hoodies and tees with full-colour 4WD artwork printed on the back" loading="lazy"><span class="cap"><b>Custom 4WD back prints</b><span>Hoodies and tees</span></span></button>
+        <button class="shot " type="button" data-i="1" id="shot-1"><img src="job-homex-lawn-care.jpg" alt="Black polo and trucker cap printed with the HomeX Lawn Care logo in green and grey" loading="lazy"><span class="cap"><b>HomeX Lawn Care</b><span>Polos and caps</span></span></button>
+        <button class="shot " type="button" data-i="2" id="shot-2"><img src="job-baby-onesies.jpg" alt="Baby onesies in pink, white, navy and blue printed with Created with a Purpose, Ephesians 2:10" loading="lazy"><span class="cap"><b>Created with a Purpose</b><span>Baby onesies</span></span></button>
+        <button class="shot " type="button" data-i="3" id="shot-3"><img src="job-jmt-mobile-mechanic.jpg" alt="Black work shirt and hoodies printed with the JMT Mobile Mechanic logo in lime and grey" loading="lazy"><span class="cap"><b>JMT Mobile Mechanic</b><span>Workwear and hoodies</span></span></button>
+        <button class="shot " type="button" data-i="4" id="shot-4"><img src="job-flexnlow-hoodie.jpg" alt="Black hoodie with a large pink and blue Flexnlow print on the back and sleeve" loading="lazy"><span class="cap"><b>Flexnlow founder hoodie</b><span>Back and sleeve print</span></span></button>
+        <button class="shot wide" type="button" data-i="5" id="shot-5"><img src="job-core-water-caps.jpg" alt="Black cap printed with the Core Water Solutions logo in silver and blue" loading="lazy"><span class="cap"><b>Core Water Solutions</b><span>Caps</span></span></button>
+        <button class="shot wide" type="button" data-i="6" id="shot-6"><img src="job-forbynation-caps.jpg" alt="A run of khaki and black trucker caps printed with the Forbynation logo" loading="lazy"><span class="cap"><b>Forbynation</b><span>Trucker caps</span></span></button>
       </div>
-      <div class="g-grid" id="g-grid"></div>
+      <div class="ig-strip">
+        <p><b>See our latest work on Instagram.</b> New jobs go up there first.</p>
+        <a class="btn btn-ink" href="https://www.instagram.com/desiredprint/" target="_blank" rel="noopener">Follow @desiredprint</a>
+      </div>
     </div>
   </section>
 
@@ -426,6 +456,12 @@ form.contact{display:grid;grid-template-columns:1fr 1fr;gap:1rem;padding:clamp(1
             <button class="copy-btn" id="copy-email" type="button">Copy</button>
           </div>
         </div>
+        <div class="email-card">
+          <span class="label">Follow our latest jobs</span>
+          <div class="email-row">
+            <a href="https://www.instagram.com/desiredprint/" target="_blank" rel="noopener">Instagram @desiredprint</a>
+          </div>
+        </div>
       </div>
 
       <form class="contact" id="contact-form" novalidate>
@@ -458,6 +494,13 @@ form.contact{display:grid;grid-template-columns:1fr 1fr;gap:1rem;padding:clamp(1
   </section>
 </main>
 
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Gallery photo" hidden>
+  <button class="lb-btn lb-close" id="lb-close" type="button">Close</button>
+  <button class="lb-btn lb-prev" id="lb-prev" type="button" aria-label="Previous photo">&#8592;</button>
+  <figure class="lb-fig"><img id="lb-img" src="job-4wd-hoodies.jpg" alt=""><figcaption id="lb-cap"></figcaption></figure>
+  <button class="lb-btn lb-next" id="lb-next" type="button" aria-label="Next photo">&#8594;</button>
+</div>
+
 <footer class="foot">
   <div class="wrap">
     <div class="foot-row">
@@ -468,6 +511,7 @@ form.contact{display:grid;grid-template-columns:1fr 1fr;gap:1rem;padding:clamp(1
         <a href="#how">How it works</a>
         <a href="#order">Order now</a>
         <a href="#contact">Contact</a>
+        <a href="https://www.instagram.com/desiredprint/" target="_blank" rel="noopener">Instagram @desiredprint</a>
       </nav>
     </div>
     <small>&copy; 2026 Desired Prints &middot; info@desiredprints.com.au</small>
@@ -506,41 +550,28 @@ function garment(type,fill,print){
   if(type==="sweat"||type==="hoodie"||type==="long"){ extra+=`<path d="M57 332 L50 344" stroke="${s}" stroke-width="2"/><path d="M343 332 L350 344" stroke="${s}" stroke-width="2"/>`; }
   return `<svg viewBox="-6 -40 412 452" aria-hidden="true">${back}<path d="${body}" fill="${fill}" stroke="${s}" stroke-width="2" stroke-linejoin="round"/>${neck}${extra}${print||""}</svg>`;
 }
-const T = (txt,col,y=200,size=46,st=125)=>`<text x="200" y="${y}" text-anchor="middle" font-family="Archivo, Arial Black, sans-serif" font-weight="900" font-stretch="${st}%" font-size="${size}" fill="${col}">${txt}</text>`;
-const PR = {
-  splash:(a,b,c)=>`<g style="mix-blend-mode:multiply"><circle cx="180" cy="170" r="40" fill="${a}"/><circle cx="220" cy="176" r="37" fill="${b}"/><circle cx="200" cy="206" r="35" fill="${c}"/></g>`,
-  crew:(c1,c2)=>`${T("CREW",c1,190,54)}<rect x="138" y="204" width="124" height="8" fill="${c2}"/>${T("EST. 2026",c1,236,16,112)}`,
-  run:(c1,c2)=>`<circle cx="200" cy="180" r="62" fill="none" stroke="${c2}" stroke-width="8"/>${T("FUN",c1,176,34)}${T("RUN",c1,212,34)}`,
-  staff:(c1,c2)=>`<rect x="226" y="96" width="44" height="30" rx="5" fill="${c2}"/><path d="M234 118 l8 -14 l8 14 l8 -14" fill="none" stroke="${c1}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>`,
-  wave:(c1,c2,c3)=>`<path d="M126 196 Q163 150 200 196 T274 196" fill="none" stroke="${c1}" stroke-width="14" stroke-linecap="round"/><path d="M126 226 Q163 180 200 226 T274 226" fill="none" stroke="${c2}" stroke-width="14" stroke-linecap="round"/><path d="M126 166 Q163 120 200 166 T274 166" fill="none" stroke="${c3}" stroke-width="14" stroke-linecap="round"/>`,
-  star:(c1,c2)=>`<path d="M200 118 l20 42 46 6 -34 32 9 46 -41 -23 -41 23 9 -46 -34 -32 46 -6z" fill="${c1}"/>${T("TEAM",c2,276,26)}`,
-  little:(c1,c2)=>`${T("LITTLE",c1,182,30)}${T("LEGEND",c2,214,30)}`,
-  drop:(c1,c2)=>`${T("LAUNCH",c1,186,40)}${T("MERCH DROP",c2,216,18,112)}`
-};
-const C={ink:"#121216",paper:"#ffffff",m:"#e3157d",y:"#ffd21a",c:"#13b3d5",v:"#6d3fd0"};
-
 /* garment style row */
 const styles=[["tee","Short sleeve"],["long","Long sleeve"],["vneck","V neck"],["tee","Round neck"],["hoodie","Hoodie"],["sweat","Sweatshirt"]];
 document.getElementById("g-row").innerHTML=styles.map(([t,l])=>`<div class="g-item">${garment(t,"#ffffff")}<span>${l}</span></div>`).join("");
 
-/* gallery tiles: swap these for real job photos when available */
-const jobs=[
-  {cat:"business",label:"Staff tees",bg:"#e8f6fa",g:garment("tee",C.ink,PR.staff(C.ink,C.c))},
-  {cat:"events",label:"Fun run tees",bg:"#fff6d6",g:garment("tee",C.y,PR.run(C.ink,C.m))},
-  {cat:"merch",label:"Company hoodies",bg:"#fde7f1",g:garment("hoodie",C.m,PR.crew(C.paper,C.y))},
-  {cat:"merch",label:"Brand sweatshirts",bg:"#eef0f4",g:garment("sweat","#ffffff",PR.splash(C.c,C.m,C.y))},
-  {cat:"business",label:"Workwear long sleeves",bg:"#ece6fa",g:garment("long","#22263a",PR.staff("#22263a",C.y))},
-  {cat:"events",label:"Sports day teams",bg:"#e8f6fa",g:garment("tee",C.c,PR.star(C.y,C.ink))},
-  {cat:"events",label:"Kids and babies",bg:"#fde7f1",g:`<svg viewBox="-6 -40 412 452" aria-hidden="true"><g transform="translate(60 70) scale(.7)">${garment("tee","#ffffff",PR.little(C.m,C.c)).replace(/^<svg[^>]*>|<\/svg>$/g,"")}</g></svg>`},
-  {cat:"merch",label:"Launch merch",bg:"#fff6d6",g:garment("tee",C.ink,PR.drop(C.y,C.paper))}
-];
-const grid=document.getElementById("g-grid");
-grid.innerHTML=jobs.map(j=>`<figure class="tile" data-cat="${j.cat}"><div class="art" style="background:${j.bg}">${j.g}</div><figcaption>${j.label}<span>${j.cat==="merch"?"Merch":j.cat}</span></figcaption></figure>`).join("");
-document.querySelectorAll(".filter").forEach(b=>b.addEventListener("click",()=>{
-  document.querySelectorAll(".filter").forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false"));
-  const f=b.dataset.f;
-  grid.querySelectorAll(".tile").forEach(t=>{t.hidden=!(f==="all"||t.dataset.cat===f)});
-}));
+/* gallery lightbox */
+const shots=[...document.querySelectorAll(".shot")];
+const lb=document.getElementById("lightbox"),lbImg=document.getElementById("lb-img"),lbCap=document.getElementById("lb-cap");
+let cur=0,lastFocus=null;
+function show(i){
+  cur=(i+shots.length)%shots.length;
+  const im=shots[cur].querySelector("img");
+  lbImg.src=im.getAttribute("src");lbImg.alt=im.alt;
+  lbCap.textContent=shots[cur].querySelector(".cap b").textContent+" · "+shots[cur].querySelector(".cap span").textContent;
+}
+function openLb(i){lastFocus=document.activeElement;show(i);lb.hidden=false;document.body.style.overflow="hidden";document.getElementById("lb-close").focus()}
+function closeLb(){lb.hidden=true;document.body.style.overflow="";if(lastFocus)lastFocus.focus()}
+shots.forEach((b,i)=>b.addEventListener("click",()=>openLb(i)));
+document.getElementById("lb-close").addEventListener("click",closeLb);
+document.getElementById("lb-prev").addEventListener("click",()=>show(cur-1));
+document.getElementById("lb-next").addEventListener("click",()=>show(cur+1));
+lb.addEventListener("click",e=>{if(e.target===lb)closeLb()});
+document.addEventListener("keydown",e=>{if(lb.hidden)return;if(e.key==="Escape")closeLb();if(e.key==="ArrowLeft")show(cur-1);if(e.key==="ArrowRight")show(cur+1)});
 
 /* mobile menu */
 const mb=document.getElementById("menu-btn"),nav=document.getElementById("nav");
@@ -593,3 +624,6 @@ form.addEventListener("submit",async e=>{
   form.innerHTML=`<div class="sent" role="status"><h3>Thanks${first?", "+first.replace(/[<>&"]/g,""):""}!</h3><p>Your message is with us and we'll be in touch soon.</p>${note}</div>`;
 });
 </script>
+
+</body>
+</html>
